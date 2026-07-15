@@ -1,5 +1,4 @@
 # Royyan-Website
-# Layout Web Royyan
 
 yo, ini project layout web yang udah jadi. basically sebuah website portfolio atau blog modern dengan dark theme yang agak sophisticated.
 
