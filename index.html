@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout Web Royyan</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "sans-serif"] },
+            colors: {
+              brand: {
+                black: "#050505",
+                dark: "#0a0a0a",
+                gray: "#171717",
+                light: "#e5e5e5",
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-brand-black text-white font-sans">
+    <div class="bg-grain"></div>
+    <header
+      class="fixed top-0 left-0 w-full z-50 bg-brand-black/80 backdrop-blur-xl border-b border-white/5"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"
+      >
+        <a href="#" class="flex items-center gap-3 group">
+          <div
+            class="w-8 h-8 bg-white rounded-sm flex items-center justify-center"
+          >
+            <span class="text-black font-semibold text-sm">R</span>
+          </div>
+          <span class="text-white font-medium tracking-wide text-sm uppercase"
+            >Royyan</span
+          >
+        </a>
+        <div
+          class="hidden md:flex items-center gap-2 bg-neutral-900 border border-white/5 rounded-sm px-3 py-2 w-64 focus-within:border-neutral-600 transition-colors"
+        >
+          <iconify-icon
+            icon="lucide:search"
+            width="14"
+            class="text-neutral-500"
+          ></iconify-icon>
+          <input
+            type="text"
+            placeholder="Cari sesuatu..."
+            class="bg-transparent text-sm text-white placeholder-neutral-500 outline-none w-full font-light"
+          />
+        </div>
+        <div class="flex items-center gap-4">
+          <button
+            id="searchToggle"
+            class="md:hidden text-neutral-400 hover:text-white transition-colors"
+          >
+            <iconify-icon icon="lucide:search" width="20"></iconify-icon>
+          </button>
+          <button
+            class="hidden md:inline-flex items-center gap-2 bg-white text-black px-5 py-2 rounded-sm text-xs font-semibold uppercase tracking-wider hover:bg-neutral-200 active:scale-95 transition-all"
+          >
+            <iconify-icon icon="lucide:log-in" width="14"></iconify-icon>
+            Login
+          </button>
+          <button
+            id="sidebarToggle"
+            class="lg:hidden text-neutral-400 hover:text-white transition-colors"
+          >
+            <iconify-icon
+              icon="lucide:sidebar"
+              width="22"
+              id="sidebarIcon"
+            ></iconify-icon>
+          </button>
+          <button
+            id="menuToggle"
+            class="md:hidden text-neutral-400 hover:text-white transition-colors"
+          >
+            <iconify-icon
+              icon="lucide:menu"
+              width="22"
+              id="menuIcon"
+            ></iconify-icon>
+          </button>
+        </div>
+      </div>
+      <div id="mobileSearch" class="hidden md:hidden px-6 pb-4">
+        <div
+          class="flex items-center gap-2 bg-neutral-900 border border-white/5 rounded-sm px-3 py-2 focus-within:border-neutral-600 transition-colors"
+        >
+          <iconify-icon
+            icon="lucide:search"
+            width="14"
+            class="text-neutral-500"
+          ></iconify-icon>
+          <input
+            type="text"
+            placeholder="Cari sesuatu..."
+            class="bg-transparent text-sm text-white placeholder-neutral-500 outline-none w-full font-light"
+          />
+        </div>
+      </div>
+      <div
+        id="mobileMenu"
+        class="mobile-menu md:hidden border-t border-white/5"
+      >
+        <div class="px-6 py-4 flex flex-col gap-3">
+          <a
+            href="#"
+            class="text-neutral-400 hover:text-white transition-colors text-sm py-1"
+            >Beranda</a
+          >
+          <a
+            href="#"
+            class="text-neutral-400 hover:text-white transition-colors text-sm py-1"
+            >Artikel</a
+          >
+          <a
+            href="#"
+            class="text-neutral-400 hover:text-white transition-colors text-sm py-1"
+            >Tentang</a
+          >
+          <a
+            href="#"
+            class="text-neutral-400 hover:text-white transition-colors text-sm py-1"
+            >Kontak</a
+          >
+          <button
+            class="md:hidden flex items-center justify-center gap-2 bg-white text-black px-5 py-2.5 rounded-sm text-xs font-semibold uppercase tracking-wider mt-2"
+          >
+            <iconify-icon icon="lucide:log-in" width="14"></iconify-icon>
+            Login
+          </button>
+        </div>
+      </div>
+    </header>
+    <nav
+      class="fixed top-16 left-0 w-full z-40 bg-brand-dark/90 backdrop-blur-md border-b border-white/5 hidden md:block"
+    >
+      <div class="max-w-7xl mx-auto px-6 flex items-center gap-8 h-11">
+        <a
+          href="#"
+          class="nav-link text-xs font-medium uppercase tracking-widest text-white"
+          >Beranda</a
+        >
+        <a
+          href="#"
+          class="nav-link text-xs font-medium uppercase tracking-widest text-neutral-500 hover:text-white transition-colors"
+          >Artikel</a
+        >
+        <a
+          href="#"
+          class="nav-link text-xs font-medium uppercase tracking-widest text-neutral-500 hover:text-white transition-colors"
+          >Kategori</a
+        >
+        <a
+          href="#"
+          class="nav-link text-xs font-medium uppercase tracking-widest text-neutral-500 hover:text-white transition-colors"
+          >Tentang</a
+        >
+        <a
+          href="#"
+          class="nav-link text-xs font-medium uppercase tracking-widest text-neutral-500 hover:text-white transition-colors"
+          >Kontak</a
+        >
+      </div>
+    </nav>
+    <div class="h-[108px] md:h-[108px]"></div>
+    <div class="max-w-7xl mx-auto px-6 py-8 flex gap-8">
+      <aside
+        id="sidebar"
+        class="mobile-sidebar fixed inset-y-0 left-0 z-30 w-56 bg-brand-black border-r border-white/5 lg:hidden lg:static lg:z-auto flex-shrink-0 -translate-x-full lg:translate-x-0 transition-transform duration-300"
+      >
+        <div class="sticky top-0 lg:top-28 overflow-y-auto h-full pt-4 lg:pt-0">
+          <button
+            id="sidebarClose"
+            class="lg:hidden absolute top-4 right-4 text-neutral-400 hover:text-white transition-colors"
+          >
+            <iconify-icon icon="lucide:x" width="20"></iconify-icon>
+          </button>
+          <div class="lg:hidden pt-8"></div>
+          <h3
+            class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600 mb-4"
+          >
+            Kategori
+          </h3>
+          <ul class="space-y-1">
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-between text-sm text-neutral-400 hover:text-white transition-colors py-2 border-b border-white/5"
+              >
+                Teknologi
+                <span class="text-[10px] text-neutral-600 font-mono">12</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-between text-sm text-neutral-400 hover:text-white transition-colors py-2 border-b border-white/5"
+              >
+                Desain
+                <span class="text-[10px] text-neutral-600 font-mono">08</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-between text-sm text-neutral-400 hover:text-white transition-colors py-2 border-b border-white/5"
+              >
+                Bisnis
+                <span class="text-[10px] text-neutral-600 font-mono">05</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-between text-sm text-neutral-400 hover:text-white transition-colors py-2 border-b border-white/5"
+              >
+                Gaya Hidup
+                <span class="text-[10px] text-neutral-600 font-mono">09</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-between text-sm text-neutral-400 hover:text-white transition-colors py-2"
+              >
+                Tutorial
+                <span class="text-[10px] text-neutral-600 font-mono">15</span>
+              </a>
+            </li>
+          </ul>
+          <div class="mt-10">
+            <h3
+              class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600 mb-4"
+            >
+              Ikuti Kami
+            </h3>
+            <div class="flex flex-col gap-2">
+              <a
+                href="#"
+                class="social-btn flex items-center gap-3 border border-white/5 rounded-sm px-3 py-2.5 text-neutral-400 text-xs font-medium"
+              >
+                <iconify-icon icon="lucide:twitter" width="14"></iconify-icon>
+                Twitter
+              </a>
+              <a
+                href="#"
+                class="social-btn flex items-center gap-3 border border-white/5 rounded-sm px-3 py-2.5 text-neutral-400 text-xs font-medium"
+              >
+                <iconify-icon icon="lucide:instagram" width="14"></iconify-icon>
+                Instagram
+              </a>
+              <a
+                href="#"
+                class="social-btn flex items-center gap-3 border border-white/5 rounded-sm px-3 py-2.5 text-neutral-400 text-xs font-medium"
+              >
+                <iconify-icon icon="lucide:github" width="14"></iconify-icon>
+                GitHub
+              </a>
+              <a
+                href="#"
+                class="social-btn flex items-center gap-3 border border-white/5 rounded-sm px-3 py-2.5 text-neutral-400 text-xs font-medium"
+              >
+                <iconify-icon icon="lucide:youtube" width="14"></iconify-icon>
+                YouTube
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          id="sidebarBackdrop"
+          class="hidden lg:hidden fixed inset-0 bg-black/50 z-20"
+        ></div>
+      </aside>
+      <div class="flex-1 min-w-0">
+        <nav class="mb-8 scroll-reveal">
+          <ol
+            class="flex items-center gap-2 text-[11px] font-mono text-neutral-600"
+          >
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Beranda</a>
+            </li>
+            <li>
+              <iconify-icon
+                icon="lucide:chevron-right"
+                width="12"
+              ></iconify-icon>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors"
+                >Kategori</a
+              >
+            </li>
+            <li>
+              <iconify-icon
+                icon="lucide:chevron-right"
+                width="12"
+              ></iconify-icon>
+            </li>
+            <li class="text-neutral-400">Teknologi</li>
+          </ol>
+        </nav>
+        <main>
+          <div class="mb-10 scroll-reveal">
+            <h1
+              class="text-3xl md:text-4xl font-semibold tracking-tight leading-tight mb-3"
+            >
+              Teknologi
+            </h1>
+            <p
+              class="text-neutral-500 font-light text-sm leading-relaxed max-w-xl"
+            >
+              Kumpulan artikel terbaru seputar perkembangan teknologi,
+              pemrograman, dan inovasi digital.
+            </p>
+          </div>
+          <article class="scroll-reveal mb-8 group cursor-pointer">
+            <div
+              class="relative overflow-hidden rounded-sm border border-white/5 card-hover"
+            >
+              <div class="aspect-[16/9] overflow-hidden">
+                <img
+                  src="https://picsum.photos/seed/tech-featured/800/450.jpg"
+                  alt="Featured"
+                  class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                />
+              </div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"
+              ></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6">
+                <span
+                  class="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-2"
+                  >Featured</span
+                >
+                <h2
+                  class="text-xl md:text-2xl font-semibold tracking-tight mb-2 group-hover:text-neutral-200 transition-colors"
+                >
+                  Masa Depan Artificial Intelligence di Tahun 2025
+                </h2>
+                <p class="text-sm text-neutral-400 font-light line-clamp-2">
+                  Eksplorasi mendalam tentang bagaimana AI mengubah industri,
+                  kreativitas, dan kehidupan sehari-hari manusia.
+                </p>
+              </div>
+            </div>
+          </article>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <article
+              class="scroll-reveal group cursor-pointer border border-white/5 rounded-sm overflow-hidden card-hover"
+            >
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  src="https://picsum.photos/seed/webdev-2024/600/375.jpg"
+                  alt="Article 1"
+                  class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                />
+              </div>
+              <div class="p-5">
+                <div class="flex items-center gap-3 mb-3">
+                  <span
+                    class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600"
+                    >Web Dev</span
+                  >
+                  <span class="text-neutral-700">·</span>
+                  <span class="text-[10px] font-mono text-neutral-600"
+                    >12 Jan 2025</span
+                  >
+                </div>
+                <h3
+                  class="text-base font-medium tracking-tight mb-2 group-hover:text-neutral-300 transition-colors"
+                >
+                  Framework React vs Vue: Mana yang Lebih Baik?
+                </h3>
+                <p class="text-sm text-neutral-500 font-light line-clamp-2">
+                  Perbandingan komprehensif antara dua framework frontend paling
+                  populer saat ini.
+                </p>
+              </div>
+            </article>
+            <article
+              class="scroll-reveal group cursor-pointer border border-white/5 rounded-sm overflow-hidden card-hover"
+            >
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  src="https://picsum.photos/seed/ui-design-tips/600/375.jpg"
+                  alt="Article 2"
+                  class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                />
+              </div>
+              <div class="p-5">
+                <div class="flex items-center gap-3 mb-3">
+                  <span
+                    class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600"
+                    >Desain</span
+                  >
+                  <span class="text-neutral-700">·</span>
+                  <span class="text-[10px] font-mono text-neutral-600"
+                    >10 Jan 2025</span
+                  >
+                </div>
+                <h3
+                  class="text-base font-medium tracking-tight mb-2 group-hover:text-neutral-300 transition-colors"
+                >
+                  Prinsip UI Minimalis yang Sering Diabaikan
+                </h3>
+                <p class="text-sm text-neutral-500 font-light line-clamp-2">
+                  Pelajari prinsip desain minimalis yang bisa meningkatkan UX
+                  secara drastis.
+                </p>
+              </div>
+            </article>
+            <article
+              class="scroll-reveal group cursor-pointer border border-white/5 rounded-sm overflow-hidden card-hover"
+            >
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  src="https://picsum.photos/seed/cloud-server/600/375.jpg"
+                  alt="Article 3"
+                  class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                />
+              </div>
+              <div class="p-5">
+                <div class="flex items-center gap-3 mb-3">
+                  <span
+                    class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600"
+                    >Cloud</span
+                  >
+                  <span class="text-neutral-700">·</span>
+                  <span class="text-[10px] font-mono text-neutral-600"
+                    >08 Jan 2025</span
+                  >
+                </div>
+                <h3
+                  class="text-base font-medium tracking-tight mb-2 group-hover:text-neutral-300 transition-colors"
+                >
+                  Mengenal Serverless Architecture untuk Pemula
+                </h3>
+                <p class="text-sm text-neutral-500 font-light line-clamp-2">
+                  Panduan lengkap memahami konsep serverless dan implementasinya
+                  di cloud modern.
+                </p>
+              </div>
+            </article>
+            <article
+              class="scroll-reveal group cursor-pointer border border-white/5 rounded-sm overflow-hidden card-hover"
+            >
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  src="https://picsum.photos/seed/cyber-security/600/375.jpg"
+                  alt="Article 4"
+                  class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                />
+              </div>
+              <div class="p-5">
+                <div class="flex items-center gap-3 mb-3">
+                  <span
+                    class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600"
+                    >Keamanan</span
+                  >
+                  <span class="text-neutral-700">·</span>
+                  <span class="text-[10px] font-mono text-neutral-600"
+                    >05 Jan 2025</span
+                  >
+                </div>
+                <h3
+                  class="text-base font-medium tracking-tight mb-2 group-hover:text-neutral-300 transition-colors"
+                >
+                  5 Cara Melindungi Data Pribadi di Internet
+                </h3>
+                <p class="text-sm text-neutral-500 font-light line-clamp-2">
+                  Tips praktis yang wajib diketahui untuk menjaga keamanan
+                  digital Anda di 2025.
+                </p>
+              </div>
+            </article>
+          </div>
+          <div
+            class="scroll-reveal flex items-center justify-center gap-2 mb-16"
+          >
+            <button
+              class="page-btn w-10 h-10 border border-white/10 rounded-sm flex items-center justify-center text-neutral-500 text-sm"
+            >
+              <iconify-icon
+                icon="lucide:chevron-left"
+                width="16"
+              ></iconify-icon>
+            </button>
+            <button
+              class="page-btn active w-10 h-10 border border-white/10 rounded-sm flex items-center justify-center text-sm font-medium"
+            >
+              1
+            </button>
+            <button
+              class="page-btn w-10 h-10 border border-white/10 rounded-sm flex items-center justify-center text-neutral-500 text-sm"
+            >
+              2
+            </button>
+            <button
+              class="page-btn w-10 h-10 border border-white/10 rounded-sm flex items-center justify-center text-neutral-500 text-sm"
+            >
+              3
+            </button>
+            <span class="text-neutral-700 px-1">...</span>
+            <button
+              class="page-btn w-10 h-10 border border-white/10 rounded-sm flex items-center justify-center text-neutral-500 text-sm"
+            >
+              12
+            </button>
+            <button
+              class="page-btn w-10 h-10 border border-white/10 rounded-sm flex items-center justify-center text-neutral-500 text-sm"
+            >
+              <iconify-icon
+                icon="lucide:chevron-right"
+                width="16"
+              ></iconify-icon>
+            </button>
+          </div>
+        </main>
+      </div>
+    </div>
+    <footer class="border-t border-white/5 bg-brand-dark">
+      <div class="max-w-7xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+          <div class="md:col-span-1">
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-8 h-8 bg-white rounded-sm flex items-center justify-center"
+              >
+                <span class="text-black font-semibold text-sm">R</span>
+              </div>
+              <span class="font-medium tracking-wide text-sm uppercase"
+                >Royyan</span
+              >
+            </div>
+            <p class="text-sm text-neutral-500 font-light leading-relaxed">
+              Platform berita dan artikel teknologi terkini untuk para pembaca
+              modern.
+            </p>
+          </div>
+          <div>
+            <h4
+              class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600 mb-4"
+            >
+              Navigasi
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-neutral-500 hover:text-white transition-colors font-light"
+                  >Beranda</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-neutral-500 hover:text-white transition-colors font-light"
+                  >Artikel</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-neutral-500 hover:text-white transition-colors font-light"
+                  >Kategori</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-neutral-500 hover:text-white transition-colors font-light"
+                  >Tentang</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600 mb-4"
+            >
+              Lainnya
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-neutral-500 hover:text-white transition-colors font-light"
+                  >Kebijakan Privasi</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-neutral-500 hover:text-white transition-colors font-light"
+                  >Syarat & Ketentuan</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-neutral-500 hover:text-white transition-colors font-light"
+                  >Sitemap</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-neutral-500 hover:text-white transition-colors font-light"
+                  >RSS Feed</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600 mb-4"
+            >
+              Kontak
+            </h4>
+            <ul class="space-y-2.5">
+              <li
+                class="flex items-center gap-2 text-sm text-neutral-500 font-light"
+              >
+                <iconify-icon
+                  icon="lucide:mail"
+                  width="14"
+                  class="text-neutral-600"
+                ></iconify-icon>
+                hello@royyan.dev
+              </li>
+              <li
+                class="flex items-center gap-2 text-sm text-neutral-500 font-light"
+              >
+                <iconify-icon
+                  icon="lucide:map-pin"
+                  width="14"
+                  class="text-neutral-600"
+                ></iconify-icon>
+                Jakarta, Indonesia
+              </li>
+            </ul>
+            <div class="flex gap-2 mt-5">
+              <a
+                href="#"
+                class="social-btn w-9 h-9 border border-white/5 rounded-sm flex items-center justify-center text-neutral-500"
+              >
+                <iconify-icon icon="lucide:twitter" width="14"></iconify-icon>
+              </a>
+              <a
+                href="#"
+                class="social-btn w-9 h-9 border border-white/5 rounded-sm flex items-center justify-center text-neutral-500"
+              >
+                <iconify-icon icon="lucide:instagram" width="14"></iconify-icon>
+              </a>
+              <a
+                href="#"
+                class="social-btn w-9 h-9 border border-white/5 rounded-sm flex items-center justify-center text-neutral-500"
+              >
+                <iconify-icon icon="lucide:github" width="14"></iconify-icon>
+              </a>
+              <a
+                href="#"
+                class="social-btn w-9 h-9 border border-white/5 rounded-sm flex items-center justify-center text-neutral-500"
+              >
+                <iconify-icon icon="lucide:youtube" width="14"></iconify-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <p class="text-[11px] text-neutral-600 font-mono">
+            © 2025 Royyan. All rights reserved.
+          </p>
+          <p class="text-[11px] text-neutral-700 font-mono">
+            Built with passion & clean code.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <div
+      id="toast"
+      class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-neutral-900 border border-white/10 text-sm text-white px-5 py-3 rounded-sm shadow-2xl opacity-0 translate-y-4 transition-all duration-300 pointer-events-none"
+    >
+      <span id="toastMsg"></span>
+    </div>
+    <script>
+      // Mobile Sidebar Toggle
+      const sidebarToggle = document.getElementById("sidebarToggle");
+      const sidebar = document.getElementById("sidebar");
+      const sidebarClose = document.getElementById("sidebarClose");
+      const sidebarBackdrop = document.getElementById("sidebarBackdrop");
+      let sidebarOpen = false;
+      function toggleSidebar() {
+        sidebarOpen = !sidebarOpen;
+        sidebar.classList.toggle("-translate-x-full", !sidebarOpen);
+        sidebarBackdrop.classList.toggle("hidden", !sidebarOpen);
+      }
+      sidebarToggle.addEventListener("click", toggleSidebar);
+      sidebarClose.addEventListener("click", toggleSidebar);
+      sidebarBackdrop.addEventListener("click", toggleSidebar);
+      // Close sidebar when a link is clicked
+      sidebar.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (sidebarOpen && window.innerWidth < 1024) {
+            toggleSidebar();
+          }
+        });
+      });
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const menuIcon = document.getElementById("menuIcon");
+      let menuOpen = false;
+      menuToggle.addEventListener("click", () => {
+        menuOpen = !menuOpen;
+        mobileMenu.classList.toggle("open", menuOpen);
+        menuIcon.setAttribute("icon", menuOpen ? "lucide:x" : "lucide:menu");
+      });
+      // Mobile Search Toggle
+      const searchToggle = document.getElementById("searchToggle");
+      const mobileSearch = document.getElementById("mobileSearch");
+      searchToggle.addEventListener("click", () => {
+        mobileSearch.classList.toggle("hidden");
+        if (!mobileSearch.classList.contains("hidden")) {
+          mobileSearch.querySelector("input").focus();
+        }
+      });
+      // Toast
+      function showToast(msg) {
+        const toast = document.getElementById("toast");
+        const toastMsg = document.getElementById("toastMsg");
+        toastMsg.textContent = msg;
+        toast.classList.remove(
+          "opacity-0",
+          "translate-y-4",
+          "pointer-events-none",
+        );
+        toast.classList.add("opacity-100", "translate-y-0");
+        setTimeout(() => {
+          toast.classList.add(
+            "opacity-0",
+            "translate-y-4",
+            "pointer-events-none",
+          );
+          toast.classList.remove("opacity-100", "translate-y-0");
+        }, 2000);
+      }
+      // Pagination Click
+      document.querySelectorAll(".page-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".page-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          const text = btn.textContent.trim();
+          if (text && !isNaN(text)) {
+            showToast(`Halaman ${text} dipilih`);
+          } else if (
+            btn.querySelector('iconify-icon[icon="lucide:chevron-left"]')
+          ) {
+            showToast("Ke halaman sebelumnya");
+          } else if (
+            btn.querySelector('iconify-icon[icon="lucide:chevron-right"]')
+          ) {
+            showToast("Ke halaman berikutnya");
+          }
+        });
+      });
+      // Scroll Reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".scroll-reveal")
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
